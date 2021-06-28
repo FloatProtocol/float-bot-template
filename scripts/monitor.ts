@@ -70,7 +70,7 @@ async function main() {
   // 2|3 => Contraction (protocol buys, you sell) 
   const stabCase = (await auctionHouse.latestAuction()).stabilisationCase;
   console.log("At Stage: ", await auctionHouse.stage());
-  console.log("Case: ", stabCase, `i.e. ${stabCase <= 1 ? "expansion" : "contraction"}`);
+  console.log("Case:     ", stabCase, `i.e. ${stabCase <= 1 ? "expansion" : "contraction"}`);
 
   let step = await auctionHouse.step();
   while (step < 150) {

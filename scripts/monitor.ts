@@ -40,7 +40,7 @@ const BANK_ETH_SLP = "0x938625591ADb4e865b882377e2c965F9f9b85E34";
 const GAS_LIMIT_FOR_2_WAY_SWAP = 8e5;
 
 async function main() {
-  const { ethers } = hre;
+  const { ethers, network } = hre;
   const [owner] = await ethers.getSigners();
 
   const floatEthSLP = new ethers.Contract(FLOAT_ETH_SLP, uniswapV2PairAbi, owner);
@@ -55,8 +55,14 @@ async function main() {
   console.log("From: ", owner.address);
 
   while((await auctionHouse.step()) > 150 ) {
-    console.log("Sleeping, not active...");
-    await wait(ethers);
+    if(network.name === "mainnet") {
+      console.log("Sleeping, not active...");
+      await wait(ethers);
+    } else {
+      console.log("Starting...");
+      await auctionHouse.start();
+      await wait(ethers);
+    }
   }
 
   // Remember:

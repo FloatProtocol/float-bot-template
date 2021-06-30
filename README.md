@@ -8,7 +8,12 @@ Contains the rough skeleton for discovering, evaluating and executing arbitrage 
 ## Usage
 
 ```
+# Install dependencies
+yarn
+
+# Check for the last auction
 yarn hardhat --network mainnet last
 
+# Run monitoring script to check profit.
 START_BLOCK=<AUCTION_START> yarn hardhat run scripts/monitor.ts
 ```

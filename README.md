@@ -12,7 +12,7 @@ Contains the rough skeleton for discovering, evaluating and executing arbitrage 
 yarn
 
 # Check for the last auction
-yarn hardhat --network mainnet last
+yarn hardhat --network mainnet last-auction
 
 # Run monitoring script to check profit.
 START_BLOCK=<AUCTION_START> yarn hardhat run scripts/monitor.ts

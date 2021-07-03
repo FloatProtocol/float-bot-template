@@ -15,7 +15,12 @@ task("accounts", "Prints the list of accounts", async (args, hre) => {
   }
 });
 
-task("last", "Grabs the last auction", async (args, hre) => {
+task("interface", "Grabs the auction interface", async (_, hre) => {
+  const auctionHouse = new hre.ethers.Contract(auctionHouseDeployment.address, auctionHouseDeployment.abi);
+  console.log(auctionHouse.interface.format("full"));
+})
+
+task("last-auction", "Grabs the last auction", async (args, hre) => {
   const [owner] = await hre.ethers.getSigners();
   const auctionHouse = new hre.ethers.Contract(auctionHouseDeployment.address, auctionHouseDeployment.abi, owner);
 
